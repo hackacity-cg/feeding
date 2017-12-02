@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <?php echo $this->Html->css('style'); ?>
     <!-- Theme style -->
     <?php echo $this->Html->css('AdminLTE.AdminLTE.min'); ?>
 <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -80,6 +81,7 @@
 <?php echo $this->Html->script('AdminLTE./plugins/fastclick/fastclick'); ?>
 <!-- AdminLTE App -->
 <?php echo $this->Html->script('AdminLTE./js/app.min'); ?>
+<?php echo $this->Html->script('functions'); ?>
 <!-- AdminLTE for demo purposes -->
 <?php echo $this->fetch('script'); ?>
 <?php echo $this->fetch('scriptBottom'); ?>

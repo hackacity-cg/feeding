@@ -44,6 +44,7 @@ class AppController extends Controller
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
         $this->viewBuilder()->setTheme('AdminLTE');
+        $this->viewBuilder()->setLayout('top');
 
         /*
          * Enable the following components for recommended CakePHP security settings.
@@ -66,6 +67,6 @@ class AppController extends Controller
         ) {
             $this->set('_serialize', true);
         }
-        $this->viewBuilder()->className('AdminLTE.AdminLTE');
+        $this->viewBuilder()->setClassName('AdminLTE.AdminLTE');
     }
 }
