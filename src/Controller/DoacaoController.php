@@ -36,6 +36,9 @@ class DoacaoController extends AppController
             $query->where(['Doacao.doador_id' => $this->Auth->user('voluntario_id')]);
             $tipo_usuario = 'voluntario';
         }
+        if(!empty($this->request->getQuery('r'))){
+            $query->andWhere(['Doacao.doacao_status_id' => 2]);
+        }
 
         $doacao = $this->paginate($query);
 
