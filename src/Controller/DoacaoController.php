@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -22,7 +23,8 @@ class DoacaoController extends AppController
     public function index()
     {
         $query = $this->Doacao->find('all')
-            ->contain(['Doador', 'DoacaoTipo', 'DoacaoStatus', 'Voluntario']);
+            ->contain(['Doador', 'DoacaoTipo', 'DoacaoStatus', 'Voluntario'])
+            ->where(['Doacao.doador_id' => $this->Auth->user('doador_id')]);
 
         $doacao = $this->paginate($query);
 
@@ -60,7 +62,8 @@ class DoacaoController extends AppController
             $doacao->data_inicio = $this->Data->DateTimeSql($this->request->getData('data_inicio'));
             $doacao->data_fim = $this->Data->DateTimeSql($this->request->getData('data_fim'));
             $doacao->doacao_status_id = 1;
-            $doacao->doador_id = $this->Auth->user('id');
+            $doacao->doador_id = $this->Auth->user('doador_id');
+
             if ($this->Doacao->save($doacao)) {
                 $this->Flash->success(__('Doação cadastrada com sucesso!'));
                 return $this->redirect(['action' => 'index']);

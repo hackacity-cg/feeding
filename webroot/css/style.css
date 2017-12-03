@@ -15,3 +15,6 @@
     border: 1px solid #d97d00;
 }
 
+.form_usuario, .form_doador, .form_voluntario{
+    display: none;
+}

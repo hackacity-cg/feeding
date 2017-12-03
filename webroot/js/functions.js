@@ -32,7 +32,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: 'POST',
-            url: site_path + '/Index/saveHoraRetirada/'+ box.find('.input-hora-retirada').val(),
+            url: site_path + '/Index/saveHoraRetirada/' + box.find('.input-hora-retirada').val(),
             dataType: 'JSON',
             beforeSend: function () {
                 //LoadGif()
@@ -51,6 +51,28 @@ $(document).ready(function () {
 
     });
 
+    $('#perfil_usuario').change(function () {
+        if ($(this).val() == 'doador') {
+            $('.form_voluntario').hide();
+            $('.form_usuario').show();
+            $('.form_doador').show();
+        } else if ($(this).val() == 'voluntario') {
+            $('.form_doador').hide();
+            $('.form_usuario').show();
+            $('.form_voluntario').show();
+        } else {
+            $('.form_doador').hide();
+            $('.form_voluntario').hide();
+            $('.form_usuario').hide();
+        }
+    });
+
+    $('.cep').mask('00000-000');
+    $('.phone').mask('0000-0000');
+    $('.phone_with_ddd').mask('(00) 0000-0000');
+    $('.cpf').mask('000.000.000-00', {reverse: true});
+    $('.cnpj').mask('00.000.000/0000-00', {reverse: true});
+    $('.money').mask('000.000.000.000.000,00', {reverse: true});
 
 
 });

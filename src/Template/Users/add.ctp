@@ -25,20 +25,58 @@
                 <?= $this->Form->create($user, array('role' => 'form')) ?>
                 <div class="box-body">
                     <div class="col-lg-6">
-                        <?php echo $this->Form->input('username', ['label' => 'Usuário']); ?>
+                        <?php echo $this->Form->input('perfil_usuario', ['label' => 'Perfil', 'id' => 'perfil_usuario', 'options' => ['doador' => 'Doador', 'voluntario' => 'Voluntario'], 'empty' => 'Selecione']); ?>
                     </div>
-                    <div class="col-lg-6">
-                        <?php echo $this->Form->input('password', ['label' => 'Senha']); ?>
-                    </div>
-                    <div class="col-lg-6">
-                        <?php echo $this->Form->input('voluntario_id', ['options' => $voluntario, 'empty' => true]); ?>
-                    </div>
-                    <div class="col-lg-6">
-                        <?php echo $this->Form->input('doador_id', ['options' => $doador, 'empty' => true]); ?>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="pull-right">
-                        <?= $this->Form->button(__('Salvar')) ?>
+
+                    <div class="form_usuario">
+                        <div class="form_doador">
+                            <div class="col-lg-6">
+                                <?php echo $this->Form->input('doador_nome', ['label' => 'Nome']); ?>
+                            </div>
+                            <div class="col-lg-6">
+                                <?php echo $this->Form->input('doador_cpf', ['label' => 'CPF', 'class' => 'cpf form-control']); ?>
+                            </div>
+                            <div class="col-lg-6">
+                                <?php echo $this->Form->input('doador_cnpj', ['label' => 'CNPJ', 'class' => 'cnpj form-control']); ?>
+                            </div>
+                            <div class="col-lg-6">
+                                <?php echo $this->Form->input('doador_telefone', ['label' => 'Telefone', 'class' => 'phone_with_ddd form-control']); ?>
+                            </div>
+                            <div class="col-lg-6">
+                                <?php echo $this->Form->input('doador_endereco', ['label' => 'Endereço']); ?>
+                            </div>
+                            <div class="col-lg-6">
+                                <?php echo $this->Form->input('doador_numero', ['label' => 'Número']); ?>
+                            </div>
+                        </div>
+                        <div class="form_voluntario">
+                            <div class="col-lg-6">
+                                <?php echo $this->Form->input('voluntario_nome', ['label' => 'Nome']); ?>
+                            </div>
+                            <div class="col-lg-6">
+                                <?php echo $this->Form->input('voluntario_cnpj', ['label' => 'CNPJ', 'class' => 'cnpj form-control']); ?>
+                            </div>
+                            <div class="col-lg-6">
+                                <?php echo $this->Form->input('voluntario_telefone', ['label' => 'Telefone', 'class' => 'phone_with_ddd form-control']); ?>
+                            </div>
+                            <div class="col-lg-6">
+                                <?php echo $this->Form->input('voluntario_endereco', ['label' => 'Endereço']); ?>
+                            </div>
+                            <div class="col-lg-6">
+                                <?php echo $this->Form->input('voluntario_numero', ['label' => 'Número']); ?>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <?php echo $this->Form->input('username', ['label' => 'Usuário']); ?>
+                        </div>
+                        <div class="col-lg-6">
+                            <?php echo $this->Form->input('password', ['label' => 'Senha']); ?>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="pull-right">
+                            <?= $this->Form->button(__('Salvar')) ?>
+                        </div>
                     </div>
                 </div>
             </div>
