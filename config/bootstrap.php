@@ -218,7 +218,7 @@ Configure::write('Theme', [
     'title' => 'AdminLTE',
     'logo' => [
         'mini' => 'NR',
-        'large' => 'NahRua'
+        'large' => 'Feeding'
     ],
     'login' => [
         'show_remember' => true,

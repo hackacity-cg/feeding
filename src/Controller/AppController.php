@@ -47,12 +47,43 @@ class AppController extends Controller
         $this->viewBuilder()->setLayout('top');
 
         /*
-         * Enable the following components for recommended CakePHP security settings.
-         * see http://book.cakephp.org/3.0/en/controllers/components/security.html
-         */
+       * Enable the following components for recommended CakePHP security settings.
+       * see https://book.cakephp.org/3.0/en/controllers/components/security.html
+       */
         //$this->loadComponent('Security');
         //$this->loadComponent('Csrf');
+
+        $this->loadComponent('Auth', [
+            'authorize' => 'Controller',//added this line
+            'authenticate' => [
+                'Form' => [
+                    'fields' => [
+                        'username' => 'username',
+                        'password' => 'password'
+                    ]
+                ]
+            ],
+            'loginAction' => [
+                'controller' => 'Users',
+                'action' => 'login'
+            ],
+            'unauthorizedRedirect' => $this->referer()
+
+        ]);
+
+        $user_session = $this->Auth->user();
+        if (!empty($user_session)) {
+            $this->loadModel("Users");
+            $user_logado = $this->Users->get($user_session['id']);
+            $this->set(compact('user_logado'));
+        }
     }
+
+    public function isAuthorized($user)
+    {
+        return true;
+    }
+
 
     /**
      * Before render callback.

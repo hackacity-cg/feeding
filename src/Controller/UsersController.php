@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -12,6 +13,33 @@ use App\Controller\AppController;
  */
 class UsersController extends AppController
 {
+    public function initialize()
+    {
+        parent::initialize();
+        $this->Auth->allow(['add']);
+    }
+
+
+    public function login()
+    {
+        $this->viewBuilder()->setLayout('AdminLTE.login');
+        if ($this->request->is('post')) {
+            $usuarios = $this->Auth->identify();
+
+            if ($usuarios) {
+                $this->Auth->setUser($usuarios);
+                return $this->redirect($this->Auth->redirectUrl());
+            }
+            $this->Flash->error('Seu login ou senha estão incorretos!');
+        }
+    }
+
+    public function logout()
+    {
+        $this->Flash->success('Você foi desconectado com sucesso!');
+        return $this->redirect($this->Auth->logout());
+    }
+
 
     /**
      * Index method
@@ -55,7 +83,7 @@ class UsersController extends AppController
     {
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
-            $user = $this->Users->patchEntity($user, $this->request->data);
+            $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The {0} has been saved.', 'User'));
                 return $this->redirect(['action' => 'index']);
