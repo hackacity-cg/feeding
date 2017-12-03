@@ -30,7 +30,7 @@ class UsersController extends AppController
                 $this->Auth->setUser($usuarios);
                 return $this->redirect($this->Auth->redirectUrl());
             }
-            $this->Flash->error('Seu login ou senha estão incorretos!');
+            $this->Flash->error('Seu usuário ou senha estão incorretos!');
         }
     }
 

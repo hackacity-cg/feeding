@@ -74,5 +74,28 @@ $(document).ready(function () {
     $('.cnpj').mask('00.000.000/0000-00', {reverse: true});
     $('.money').mask('000.000.000.000.000,00', {reverse: true});
 
+    $('#entregue_btn').click(function (event) {
+        event.preventDefault();
+        $doacao_id = $('#doacao_id').val();
 
+        $.ajax({
+            type: 'POST',
+            url: site_path + '/Doacao/realizarEntrega/' + $doacao_id,
+            dataType: 'JSON',
+            beforeSend: function () {
+                //LoadGif()
+            },
+            success: function (txt) {
+                location.reload();
+            },
+            complete: function () {
+                //CloseGif();
+            },
+            error: function () {
+                //toastr.error(msgErrorAjax);
+            }
+        })
+
+
+    });
 });
