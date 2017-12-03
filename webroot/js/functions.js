@@ -40,7 +40,7 @@ $(document).ready(function () {
         var box = $(this).closest('.box-feeding');
         var hora = box.find('.input-hora-retirada').val();
         if(hora == ""){
-            toast_msg('Informe um horário para retirar o alimento!', '#f39c12');
+            toast_msg('Informe um horário para reservar o alimento!', '#f39c12');
             return false;
         }
 
@@ -68,14 +68,17 @@ $(document).ready(function () {
 
     $('#perfil_usuario').change(function () {
         if ($(this).val() == 'doador') {
-            $('.form_voluntario').hide();
-            $('.form_usuario').show();
-            $('.form_doador').show();
-        } else if ($(this).val() == 'voluntario') {
-            $('.form_doador').hide();
-            $('.form_usuario').show();
-            $('.form_voluntario').show();
-        } else {
+            $('.form_usuario').removeClass('hidden');
+            $('.form_doador').removeClass('hidden');
+            $('.form_voluntario').addClass('hidden');
+        }
+        if ($(this).val() == 'voluntario') {
+            $('.form_usuario').removeClass('hidden');
+            $('.form_doador').addClass('hidden');
+            $('.form_voluntario').removeClass('hidden');
+        }
+
+        if($(this).val() == '') {
             $('.form_doador').hide();
             $('.form_voluntario').hide();
             $('.form_usuario').hide();

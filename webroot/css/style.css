@@ -23,7 +23,6 @@
 .box-feeding {
     background-color: #bc2026;
     background-image: linear-gradient(to bottom, transparent, rgba(98, 12, 7, 0.6));
-    color: #fff;
     border-top: none;
     -webkit-box-shadow: 2px 2px 4px 1px rgba(0,0,0,0.69);
     -moz-box-shadow: 2px 2px 4px 1px rgba(0,0,0,0.69);
@@ -31,16 +30,18 @@
     text-align: justify;
     min-height: 220px !important;
 }
+.box-feeding .box-body {
+    color: #fff;
+}
 .box-feeding button.btnReservar {
     background-color: #d97d00;
     border: 1px solid #d97d00;
 }
-<<<<<<< HEAD
+
 .box-feeding button.btnReservar:hover {
     background-color: #e38700 !important;
-=======
+}
 
-.form_usuario, .form_doador, .form_voluntario{
-    display: none;
->>>>>>> 06db61ddc4d64c85c5e4f069f7e2e3744dbbcf5b
+.container-time-retirada .bootstrap-datetimepicker-widget {
+    color: #484848;
 }

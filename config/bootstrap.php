@@ -215,7 +215,7 @@ Type::build('timestamp')
 
 Plugin::load('AdminLTE', ['bootstrap' => true, 'routes' => true]);
 Configure::write('Theme', [
-    'title' => 'AdminLTE',
+    'title' => 'Feeding',
     'logo' => [
         'mini' => 'NR',
         'large' => 'Feeding'

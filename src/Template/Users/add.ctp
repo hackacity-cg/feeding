@@ -28,8 +28,8 @@
                         <?php echo $this->Form->input('perfil_usuario', ['label' => 'Perfil', 'id' => 'perfil_usuario', 'options' => ['doador' => 'Doador', 'voluntario' => 'Voluntario'], 'empty' => 'Selecione']); ?>
                     </div>
 
-                    <div class="form_usuario">
-                        <div class="form_doador">
+                    <div class="form_usuario hidden">
+                        <div class="form_doador hidden">
                             <div class="col-lg-6">
                                 <?php echo $this->Form->input('doador_nome', ['label' => 'Nome']); ?>
                             </div>
@@ -45,11 +45,8 @@
                             <div class="col-lg-6">
                                 <?php echo $this->Form->input('doador_endereco', ['label' => 'Endereço']); ?>
                             </div>
-                            <div class="col-lg-6">
-                                <?php echo $this->Form->input('doador_numero', ['label' => 'Número']); ?>
-                            </div>
                         </div>
-                        <div class="form_voluntario">
+                        <div class="form_voluntario hidden">
                             <div class="col-lg-6">
                                 <?php echo $this->Form->input('voluntario_nome', ['label' => 'Nome']); ?>
                             </div>
@@ -62,7 +59,7 @@
                             <div class="col-lg-6">
                                 <?php echo $this->Form->input('voluntario_endereco', ['label' => 'Endereço']); ?>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 hidden">
                                 <?php echo $this->Form->input('voluntario_numero', ['label' => 'Número']); ?>
                             </div>
                         </div>
