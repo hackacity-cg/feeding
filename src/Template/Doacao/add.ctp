@@ -26,7 +26,12 @@
                 <div class="box-body">
                     <div class="col-lg-6">
                         <?php
-                        echo $this->Form->input('periodo_entrega', ['class' => 'form-control pull-right', 'type' => 'text', 'id' => 'reservationtime']);
+                        echo $this->Form->input('data_inicio', []);
+                        ?>
+                    </div>
+                    <div class="col-lg-6">
+                        <?php
+                        echo $this->Form->input('data_fim', []);
                         ?>
                     </div>
                     <div class="col-lg-6">

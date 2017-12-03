@@ -20,10 +20,10 @@ class DoacaoController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Doador', 'DoacaoTipo', 'DoacaoStatus', 'Voluntario']
-        ];
-        $doacao = $this->paginate($this->Doacao);
+        $query = $this->Doacao->find('all')
+            ->contain(['Doador', 'DoacaoTipo', 'DoacaoStatus', 'Voluntario']);
+
+        $doacao = $this->paginate($query);
 
         $this->set(compact('doacao'));
         $this->set('_serialize', ['doacao']);

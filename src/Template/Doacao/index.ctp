@@ -29,7 +29,6 @@
           <table class="table table-hover">
             <thead>
               <tr>
-                <th><?= $this->Paginator->sort('id') ?></th>
                 <th><?= $this->Paginator->sort('doador_id') ?></th>
                 <th><?= $this->Paginator->sort('endereco') ?></th>
                 <th><?= $this->Paginator->sort('data_inicio') ?></th>
@@ -42,12 +41,11 @@
             <tbody>
             <?php foreach ($doacao as $doacao): ?>
               <tr>
-                <td><?= $this->Number->format($doacao->id) ?></td>
-                <td><?= $doacao->has('doador') ? $this->Html->link($doacao->doador->id, ['controller' => 'Doador', 'action' => 'view', $doacao->doador->id]) : '' ?></td>
+                <td><?= $doacao->has('doador') ? $doacao->doador->nome : '' ?></td>
                 <td><?= h($doacao->endereco) ?></td>
-                <td><?= h($doacao->data_inicio) ?></td>
-                <td><?= h($doacao->data_fim) ?></td>
-                <td><?= $doacao->has('doacao_tipo') ? $this->Html->link($doacao->doacao_tipo->id, ['controller' => 'DoacaoTipo', 'action' => 'view', $doacao->doacao_tipo->id]) : '' ?></td>
+                <td><?= date_format('d/m/Y H:i', $doacao->data_inicio) ?></td>
+                <td><?= date_format('d/m/Y H:i', $doacao->data_fim) ?></td>
+                <td><?= $doacao->has('doacao_tipo') ? $doacao->doacao_tipo->nome : '' ?></td>
                 <td><?= h($doacao->quantidade) ?></td>
                 <td class="actions" style="white-space:nowrap">
                   <?= $this->Html->link(__('View'), ['action' => 'view', $doacao->id], ['class'=>'btn btn-info btn-xs']) ?>
