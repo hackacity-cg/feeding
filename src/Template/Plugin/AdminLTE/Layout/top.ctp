@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title><?php echo isset($theme['title']) ? $theme['title'] : 'AdminLTE 2 | To Navigation'; ?></title>
+  <title><?php echo isset($theme['title']) ? $theme['title'] : 'Feeding - Dashboard'; ?></title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.5 -->
@@ -37,7 +37,7 @@
     <nav class="navbar navbar-static-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="<?php echo $this->Url->build('/'); ?>" class="navbar-brand"><b>Admin</b>LTE</a>
+          <a href="<?php echo $this->Url->build('/'); ?>" class="navbar-brand"><b>Feeding</b></a>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>
@@ -46,7 +46,15 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+            <li class="active">
+                <?php
+                if(!empty($user_logado->doador_id)):
+                    echo $this->Html->link('Doar', ['controller' => 'Doacao', 'action' => 'add']);
+                elseif(!empty($user_logado->voluntario_id)):
+                    echo $this->Html->link('Doar', ['controller' => 'Doacao', 'action' => 'index']);
+                endif;
+                ?>
+            </li>
             <li><a href="#">Link</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
