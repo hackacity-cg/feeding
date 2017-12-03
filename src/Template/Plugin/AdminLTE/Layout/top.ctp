@@ -67,11 +67,6 @@
               ?>
 
           </ul>
-          <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search">
-            </div>
-          </form>
         </div>
         <!-- /.navbar-collapse -->
         <!-- Navbar Right Menu -->
@@ -82,14 +77,14 @@
               <!-- Menu Toggle Button -->
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <!-- The user image in the navbar-->
-                <?php echo $this->Html->image('user2-160x160.jpg', array('class' => 'user-image', 'alt' => 'User Image')); ?>
+                <?php echo $this->Html->image('avatar.png', array('class' => 'user-image', 'alt' => 'User Image')); ?>
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                 <span class="hidden-xs">Alexander Pierce</span>
               </a>
               <ul class="dropdown-menu">
                 <!-- The user image in the menu -->
                 <li class="user-header">
-                <?php echo $this->Html->image('user2-160x160.jpg', array('class' => 'user-image', 'alt' => 'User Image')); ?>
+                <?php echo $this->Html->image('avatar.png', array('class' => 'user-image', 'alt' => 'User Image')); ?>
 
                   <p>
                     Alexander Pierce - Web Developer
@@ -101,7 +96,7 @@
                 <!-- Menu Footer-->
                 <li class="user-footer">
                   <div class="pull-left">
-                    <a href="#" class="btn btn-default btn-flat">Profile</a>
+                    <?= $this->Html->link('Meu Cadastro',['controller'=>'Users','edit', $user_logado->id],['class' => 'btn btn-default btn-flat']) ?>
                   </div>
                   <div class="pull-right">
                       <?php
