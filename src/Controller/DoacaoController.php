@@ -17,7 +17,7 @@ class DoacaoController extends AppController
 
     /**
      * Index method
-     * 
+     *
      *
      * @return \Cake\Http\Response|void
      */
@@ -131,9 +131,9 @@ class DoacaoController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $doacao = $this->Doacao->get($id);
         if ($this->Doacao->delete($doacao)) {
-            $this->Flash->success(__('The {0} has been deleted.', 'Doacao'));
+            $this->Flash->success(__('A {0} Doação foi excluída.', 'Doacao'));
         } else {
-            $this->Flash->error(__('The {0} could not be deleted. Please, try again.', 'Doacao'));
+            $this->Flash->error(__('Não {0} foi  possível realizar essa exclusão. Por favor tente novamente', 'Doacao'));
         }
         return $this->redirect(['action' => 'index']);
     }
