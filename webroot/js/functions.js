@@ -1,15 +1,27 @@
 $(document).ready(function () {
 
-    var loadDatetimePicker = function () {
-        $('.timepicker').each(function () {
-            $(this).datetimepicker({
-                locale: 'pt-br',
-                format: 'LT'
-            });
+    moment.locale('pt-BR');
+    $('.timepicker').each(function () {
+        $(this).datetimepicker({
+            locale: 'pt-br',
+            format: 'LT'
         });
-    };
-
-    $(loadDatetimePicker);
+    });
+    $('.datetimepicker').each(function () {
+        $(this).datetimepicker({
+            locale: 'pt-br',
+            sideBySide: true,
+            extraFormats: ['YYYY-MM-DD HH:mm:ss', 'YYYY-MM-DD'],
+            showTodayButton: true,
+            useStrict: true,
+            showClear: true,
+            allowInputToggle: true,
+            widgetPositioning: {
+                horizontal: 'auto',
+                vertical: 'bottom'
+            }
+        });
+    });
 
 
     $('.btnReservar').click(function () {

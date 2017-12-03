@@ -26,12 +26,12 @@
                 <div class="box-body">
                     <div class="col-lg-6">
                         <?php
-                        echo $this->Form->input('data_inicio', []);
+                        echo $this->Form->input('data_inicio', ['class' => 'form-control datetimepicker', 'type' => 'text']);
                         ?>
                     </div>
                     <div class="col-lg-6">
                         <?php
-                        echo $this->Form->input('data_fim', []);
+                        echo $this->Form->input('data_fim', ['class' => 'form-control datetimepicker', 'type' => 'text']);
                         ?>
                     </div>
                     <div class="col-lg-6">
