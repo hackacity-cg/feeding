@@ -23,12 +23,21 @@ class DoacaoController extends AppController
     public function index()
     {
         $query = $this->Doacao->find('all')
-            ->contain(['Doador', 'DoacaoTipo', 'DoacaoStatus', 'Voluntario'])
-            ->where(['Doacao.doador_id' => $this->Auth->user('doador_id')]);
+            ->contain(['Doador', 'DoacaoTipo', 'DoacaoStatus', 'Voluntario']);
+
+        if(!empty($this->Auth->user('doador_id'))){
+            $query->where(['Doacao.doador_id' => $this->Auth->user('doador_id')]);
+            $tipo_usuario = 'doador';
+        }
+
+        if(!empty($this->Auth->user('voluntario_id'))){
+            $query->where(['Doacao.doador_id' => $this->Auth->user('voluntario_id')]);
+            $tipo_usuario = 'voluntario';
+        }
 
         $doacao = $this->paginate($query);
 
-        $this->set(compact('doacao'));
+        $this->set(compact('doacao', 'tipo_usuario'));
         $this->set('_serialize', ['doacao']);
     }
 

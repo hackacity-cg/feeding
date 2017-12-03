@@ -2,7 +2,9 @@
 <section class="content-header">
   <h1>
     Lista Doação
-    <div class="pull-right"><?= $this->Html->link(__('Novo'), ['action' => 'add'], ['class'=>'btn btn-success btn-xs']) ?></div>
+      <?php if($tipo_usuario == 'doador'): ?>
+      <div class="pull-right"><?= $this->Html->link(__('Novo'), ['action' => 'add'], ['class'=>'btn btn-success btn-xs']) ?></div>
+      <?php endif; ?>
   </h1>
 </section>
 
@@ -35,6 +37,7 @@
                 <th><?= $this->Paginator->sort('data_fim') ?></th>
                 <th><?= $this->Paginator->sort('tipo_doacao_id') ?></th>
                 <th><?= $this->Paginator->sort('quantidade') ?></th>
+                <th><?= $this->Paginator->sort('voluntario') ?></th>
                 <th><?= __('Actions') ?></th>
               </tr>
             </thead>
@@ -52,6 +55,7 @@
                   <?= $this->Html->link(__('Editar'), ['action' => 'edit', $doacao->id], ['class'=>'btn btn-warning btn-xs']) ?>
                   <?= $this->Form->postLink(__('Deletar'), ['action' => 'delete', $doacao->id], ['confirm' => __('Confirm to delete this entry?'), 'class'=>'btn btn-danger btn-xs']) ?>
                 </td>
+                  <td><?= $doacao->has('voluntario') ? $doacao->voluntario->nome : '' ?></td>
               </tr>
             <?php endforeach; ?>
             </tbody>
