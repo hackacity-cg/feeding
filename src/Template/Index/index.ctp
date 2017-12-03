@@ -26,8 +26,14 @@
                             </div>
                             <div class="box-footer with-border">
                                 <div class="box-title">
-                                    <?php echo $this->Form->button('Reservar', ['class' => 'btn btn-primary btn-block btn-flat btnReservar', 'escape' => false]); ?>
-                                    <?php echo $this->Form->input('time', ['type' => 'hidden', 'label' => 'Hora Retirada', 'class' => 'timepicker hora-retirada']); ?>
+                                    <div class="container-time-retirada">
+                                        <div class="input-group input-group">
+                                            <input type="text" class="form-control timepicker input-hora-retirada" placeholder="Hora retirada.." aria-label="Hora retirada...">
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-info btn-flat btnReservar">Reservar <i class="glyphicon glyphicon-ok"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

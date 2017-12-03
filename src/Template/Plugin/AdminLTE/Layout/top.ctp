@@ -20,7 +20,7 @@
     <?php echo $this->Html->css('AdminLTE.skins/skin-'. Configure::read('Theme.skin') .'.min'); ?>
 
   <?php echo $this->fetch('css'); ?>
-  <?php echo $this->element('header-comida'); ?>
+  <?php echo $this->element('header-feeding'); ?>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -233,7 +233,7 @@
 
 <!-- jQuery 2.2.2-->
 <?php echo $this->Html->script('AdminLTE./plugins/jQuery/jquery-2.2.3.min'); ?>
-<?php echo $this->element('footer-comida'); ?>
+<?php echo $this->element('footer-feeding'); ?>
 <!-- Bootstrap 3.3.5 -->
 <?php echo $this->Html->script('AdminLTE./bootstrap/js/bootstrap.min'); ?>
 <!-- SlimScroll -->

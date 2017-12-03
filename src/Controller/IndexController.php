@@ -15,6 +15,7 @@
 namespace App\Controller;
 
 use Cake\Core\Configure;
+use Cake\I18n\Time;
 use Cake\Network\Exception\ForbiddenException;
 use Cake\Network\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
@@ -30,6 +31,21 @@ class IndexController extends AppController
 {
     public function index()
     {
+        $this->loadModel('Doacao');
 
+        $doacoes = $this->Doacao->find('all')->where(['Doacao.doacao_status_id' => 1]);
+    }
+
+    public function saveHoraRetirada($hora)
+    {
+        $time = new Time('08:00');
+        $hora_retirada = date('Y-m-d '.$time->format('H:i:s'));
+
+        /*$user_id = $this->Auth->user('user_id');
+        $this->Comidas->get($user_id);*/
+
+        $json = json_encode($hora_retirada);
+        $response = $this->response->withType('json')->withStringBody($json);
+        return $response;
     }
 }
