@@ -38,30 +38,6 @@
 
 <?php echo $this->fetch('content'); ?>
 
-    <?php
-    if (Configure::read('Theme.login.show_social')) {
-        ?>
-        <div class="social-auth-links text-center">
-          <p>- <?php echo __('OR') ?> -</p>
-          <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> <?php echo __('Sign in using Facebook') ?></a>
-          <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> <?php echo __('Sign in using Google+') ?></a>
-        </div>
-        <?php
-    }
-    ?>
-
-    <?php
-    if (Configure::read('Theme.login.show_remember')) {
-        ?>
-        <a href="#"><?php echo __('I forgot my password') ?></a><br>
-        <?php
-    }
-    if (Configure::read('Theme.login.show_register')) {
-        ?>
-        <a href="#" class="text-center"><?php echo __('Register a new membership') ?></a>
-        <?php
-    }
-    ?>
 
   </div>
   <!-- /.login-box-body -->
