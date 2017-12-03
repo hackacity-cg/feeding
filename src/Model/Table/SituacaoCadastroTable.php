@@ -31,7 +31,7 @@ class SituacaoCadastroTable extends Table
         parent::initialize($config);
 
         $this->setTable('situacao_cadastro');
-        $this->setDisplayField('id');
+        $this->setDisplayField('nome');
         $this->setPrimaryKey('id');
     }
 
