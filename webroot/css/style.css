@@ -45,3 +45,9 @@
 .container-time-retirada .bootstrap-datetimepicker-widget {
     color: #484848;
 }
+
+@media(max-width:767px){
+    .box-feeding {
+        min-height: 260px !important;
+    }
+}
