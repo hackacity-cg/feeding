@@ -18,7 +18,7 @@
             <div class="row">
                 <?php for($i=0;$i<10;$i++):?>
                     <div class="col-md-4">
-                        <div class="box box-default box-comidas">
+                        <div class="box box-default box-feeding">
                             <div class="box-body">
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ultricies velit id purus feugiat ultrices. Donec eget scelerisque elit, et consectetur lorem. Sed suscipit, eros id elementum venenatis, ante dolor dictum ex, mattis elementum erat mauris.</p>
                                 <p><i class="glyphicon glyphicon-map-marker"></i> Rua uricuri, 375, Vila Olinda</p>
