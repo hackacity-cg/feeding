@@ -1,17 +1,40 @@
 @charset "UTF-8";
 
+.content-feeding {
+    background-color: #FFF !important;
+}
+.box-footer-feeding {
+    position: absolute !important;
+    bottom: 0;
+}
+.descricao-feeding {
+    clear: both;
+    padding: 8px
+}
+.hora-disponivel {
+    float: right;
+    background-color: #fff;
+    border-bottom-left-radius: 60%;
+    max-width: 50px;
+    margin: -10px;
+    color: #ccc;
+    padding: 3px;
+}
 .box-feeding {
     background-color: #bc2026;
     background-image: linear-gradient(to bottom, transparent, rgba(98, 12, 7, 0.6));
     color: #fff;
     border-top: none;
-    -webkit-box-shadow: 8px 8px 8px -5px rgba(0,0,0,0.75);
-    -moz-box-shadow: 8px 8px 8px -5px rgba(0,0,0,0.75);
-    box-shadow: 8px 8px 8px -5px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 2px 2px 4px 1px rgba(0,0,0,0.69);
+    -moz-box-shadow: 2px 2px 4px 1px rgba(0,0,0,0.69);
+    box-shadow: 2px 2px 4px 1px rgba(0,0,0,0.69);
     text-align: justify;
+    min-height: 220px !important;
 }
-.box-feeding button {
+.box-feeding button.btnReservar {
     background-color: #d97d00;
     border: 1px solid #d97d00;
 }
-
+.box-feeding button.btnReservar:hover {
+    background-color: #e38700 !important;
+}

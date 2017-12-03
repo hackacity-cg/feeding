@@ -20,4 +20,5 @@ echo "<script>var site_path =\"".$root."\";</script>";
 <?= $this->Html->script('moment/moment'); ?>
 <?= $this->Html->script('moment/moment-with-locales'); ?>
 <?= $this->Html->script('datetimepicker/bootstrap-datetimepicker'); ?>
+<?= $this->Html->script('toast/jquery.toast.min'); ?>
 <?= $this->Html->script('functions'); ?>

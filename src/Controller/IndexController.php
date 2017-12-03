@@ -33,18 +33,26 @@ class IndexController extends AppController
     {
         $this->loadModel('Doacao');
 
-        $doacoes = $this->Doacao->find('all')->where(['Doacao.doacao_status_id' => 1]);
+        $doacoes = $this->Doacao->find('all')->contain(['Doador'])->where(['Doacao.doacao_status_id' => 1]);
+        $this->set(compact('doacoes'));
     }
 
-    public function saveHoraRetirada($hora)
+    public function saveHoraRetirada()
     {
-        $time = new Time('08:00');
-        $hora_retirada = date('Y-m-d '.$time->format('H:i:s'));
+        $this->loadModel('Doacao');
+        $time = new Time($this->request->getData('hora'));
+        $hora_reservada = date('Y-m-d '.$time->format('H:i:s'));
+        $res = [];
 
-        /*$user_id = $this->Auth->user('user_id');
-        $this->Comidas->get($user_id);*/
-
-        $json = json_encode($hora_retirada);
+        $voluntario_id = $this->Auth->user('voluntario_id');
+        $doacao = $this->Doacao->get($this->request->getData('doacao_id'));
+        $doacao->voluntario_id = $voluntario_id;
+        $doacao->doacao_status_id = 2; // Reservado
+        $doacao->data_saida = $hora_reservada;
+        if($this->Doacao->save($doacao)){
+            $res = ['erro' => 0, 'msg' => 'Reserva foi salva com sucesso!'];
+        }
+        $json = json_encode($res);
         $response = $this->response->withType('json')->withStringBody($json);
         return $response;
     }

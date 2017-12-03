@@ -219,7 +219,7 @@
     </nav>
   </header>
   <!-- Full Width Column -->
-  <div class="content-wrapper">
+  <div class="content-wrapper content-feeding">
     <div class="container">
       <?php echo $this->fetch('content'); ?>
     </div>
