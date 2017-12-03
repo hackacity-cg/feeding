@@ -6,10 +6,16 @@ class Initial extends AbstractMigration
     public function up()
     {
 
-        $this->table('comidas')
+        $this->table('doacao')
             ->addColumn('doador_id', 'integer', [
+                'comment' => 'Quem vai fornecer',
                 'default' => null,
-                'limit' => 11,
+                'limit' => 20,
+                'null' => true,
+            ])
+            ->addColumn('endereco', 'string', [
+                'default' => null,
+                'limit' => 255,
                 'null' => true,
             ])
             ->addColumn('data_inicio', 'datetime', [
@@ -22,90 +28,31 @@ class Initial extends AbstractMigration
                 'limit' => null,
                 'null' => true,
             ])
-            ->addColumn('descricao', 'string', [
+            ->addColumn('tipo_doacao_id', 'integer', [
+                'comment' => 'Sopa (Litros). Comida',
                 'default' => null,
-                'limit' => 255,
+                'limit' => 20,
                 'null' => true,
             ])
-            ->addColumn('reserva_id', 'integer', [
+            ->addColumn('quantidade', 'string', [
                 'default' => null,
-                'limit' => 11,
+                'limit' => 50,
                 'null' => true,
             ])
-            ->addColumn('quantidade', 'integer', [
+            ->addColumn('doacao_status_id', 'integer', [
+                'comment' => 'Reservado, Ativo ...',
                 'default' => null,
-                'limit' => 11,
-                'null' => true,
-            ])
-            ->addColumn('endereco', 'string', [
-                'default' => null,
-                'limit' => 255,
-                'null' => false,
-            ])
-            ->addColumn('numero', 'integer', [
-                'default' => null,
-                'limit' => 11,
-                'null' => true,
-            ])
-            ->addColumn('created', 'datetime', [
-                'default' => null,
-                'limit' => null,
-                'null' => true,
-            ])
-            ->addColumn('modified', 'datetime', [
-                'default' => null,
-                'limit' => null,
-                'null' => true,
-            ])
-            ->addColumn('situacao_comida_id', 'integer', [
-                'default' => null,
-                'limit' => 11,
-                'null' => true,
-            ])
-            ->addColumn('situacao_cadastro_id', 'integer', [
-                'default' => null,
-                'limit' => 11,
-                'null' => true,
-            ])
-            ->addIndex(
-                [
-                    'doador_id',
-                ]
-            )
-            ->addIndex(
-                [
-                    'situacao_cadastro_id',
-                ]
-            )
-            ->addIndex(
-                [
-                    'situacao_comida_id',
-                ]
-            )
-            ->create();
-
-        $this->table('reservas')
-            ->addColumn('comida_id', 'integer', [
-                'default' => null,
-                'limit' => 11,
-                'null' => true,
-            ])
-            ->addColumn('tempo_previsto', 'datetime', [
-                'default' => null,
-                'limit' => null,
+                'limit' => 20,
                 'null' => true,
             ])
             ->addColumn('voluntario_id', 'integer', [
+                'comment' => 'Quem vai pegar',
                 'default' => null,
-                'limit' => 11,
+                'limit' => 20,
                 'null' => true,
             ])
-            ->addColumn('doador_id', 'integer', [
-                'default' => null,
-                'limit' => 11,
-                'null' => true,
-            ])
-            ->addColumn('entregue', 'boolean', [
+            ->addColumn('data_saida', 'datetime', [
+                'comment' => 'Hora que vai pegar',
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -120,24 +67,9 @@ class Initial extends AbstractMigration
                 'limit' => null,
                 'null' => true,
             ])
-            ->addColumn('user_id', 'integer', [
-                'default' => null,
-                'limit' => 11,
-                'null' => true,
-            ])
-            ->addColumn('situacao_reserva_id', 'integer', [
-                'default' => null,
-                'limit' => 11,
-                'null' => true,
-            ])
-            ->addColumn('situacao_cadastro_id', 'integer', [
-                'default' => null,
-                'limit' => 11,
-                'null' => true,
-            ])
             ->addIndex(
                 [
-                    'comida_id',
+                    'doacao_status_id',
                 ]
             )
             ->addIndex(
@@ -147,12 +79,7 @@ class Initial extends AbstractMigration
             )
             ->addIndex(
                 [
-                    'situacao_cadastro_id',
-                ]
-            )
-            ->addIndex(
-                [
-                    'situacao_reserva_id',
+                    'tipo_doacao_id',
                 ]
             )
             ->addIndex(
@@ -160,18 +87,21 @@ class Initial extends AbstractMigration
                     'voluntario_id',
                 ]
             )
-            ->addIndex(
-                [
-                    'user_id',
-                ]
-            )
             ->create();
 
-        $this->table('situacao_cadastros')
+        $this->table('doacao_status')
+            ->addColumn('nome', 'string', [
+                'default' => null,
+                'limit' => 150,
+                'null' => false,
+            ])
+            ->create();
+
+        $this->table('doacao_tipo')
             ->addColumn('nome', 'string', [
                 'default' => null,
                 'limit' => 255,
-                'null' => false,
+                'null' => true,
             ])
             ->addColumn('created', 'datetime', [
                 'default' => null,
@@ -183,23 +113,43 @@ class Initial extends AbstractMigration
                 'limit' => null,
                 'null' => true,
             ])
-            ->addColumn('user_id', 'integer', [
-                'default' => null,
-                'limit' => 11,
-                'null' => true,
-            ])
-            ->addIndex(
-                [
-                    'user_id',
-                ]
-            )
             ->create();
 
-        $this->table('situacao_comidas')
+        $this->table('doador')
             ->addColumn('nome', 'string', [
                 'default' => null,
                 'limit' => 255,
-                'null' => false,
+                'null' => true,
+            ])
+            ->addColumn('cpf', 'string', [
+                'default' => null,
+                'limit' => 50,
+                'null' => true,
+            ])
+            ->addColumn('cnpj', 'string', [
+                'default' => null,
+                'limit' => 50,
+                'null' => true,
+            ])
+            ->addColumn('telefone', 'string', [
+                'default' => null,
+                'limit' => 50,
+                'null' => true,
+            ])
+            ->addColumn('endereco', 'string', [
+                'default' => null,
+                'limit' => 50,
+                'null' => true,
+            ])
+            ->addColumn('numero', 'string', [
+                'default' => null,
+                'limit' => 50,
+                'null' => true,
+            ])
+            ->addColumn('nivel_feeding', 'string', [
+                'default' => null,
+                'limit' => 50,
+                'null' => true,
             ])
             ->addColumn('created', 'datetime', [
                 'default' => null,
@@ -211,69 +161,46 @@ class Initial extends AbstractMigration
                 'limit' => null,
                 'null' => true,
             ])
-            ->addColumn('user_id', 'integer', [
+            ->addColumn('situacao_id', 'integer', [
                 'default' => null,
-                'limit' => 11,
+                'limit' => 20,
                 'null' => true,
             ])
             ->addIndex(
                 [
-                    'user_id',
+                    'situacao_id',
                 ]
             )
             ->create();
 
-        $this->table('situcao_cadastros')
-            ->addColumn('nome', 'string', [
-                'default' => null,
-                'limit' => 255,
-                'null' => true,
-            ])
-            ->create();
-
-        $this->table('situcao_reservas')
+        $this->table('situacao_cadastro')
             ->addColumn('nome', 'string', [
                 'default' => null,
                 'limit' => 255,
                 'null' => false,
             ])
-            ->addColumn('created', 'datetime', [
-                'default' => null,
-                'limit' => null,
-                'null' => true,
-            ])
-            ->addColumn('modified', 'datetime', [
-                'default' => null,
-                'limit' => null,
-                'null' => true,
-            ])
-            ->addColumn('user_id', 'integer', [
-                'default' => null,
-                'limit' => 11,
-                'null' => true,
-            ])
-            ->addIndex(
-                [
-                    'user_id',
-                ]
-            )
             ->create();
 
         $this->table('users')
-            ->addColumn('nome', 'string', [
-                'default' => null,
-                'limit' => 255,
-                'null' => false,
-            ])
             ->addColumn('username', 'string', [
                 'default' => null,
                 'limit' => 255,
-                'null' => false,
+                'null' => true,
             ])
             ->addColumn('password', 'string', [
                 'default' => null,
                 'limit' => 255,
-                'null' => false,
+                'null' => true,
+            ])
+            ->addColumn('voluntario_id', 'integer', [
+                'default' => null,
+                'limit' => 20,
+                'null' => true,
+            ])
+            ->addColumn('doador_id', 'integer', [
+                'default' => null,
+                'limit' => 20,
+                'null' => true,
             ])
             ->addColumn('created', 'datetime', [
                 'default' => null,
@@ -285,57 +212,80 @@ class Initial extends AbstractMigration
                 'limit' => null,
                 'null' => true,
             ])
-            ->addColumn('user_id', 'integer', [
+            ->addColumn('situacao_id', 'integer', [
                 'default' => null,
-                'limit' => 11,
+                'limit' => 20,
                 'null' => true,
-            ])
-            ->addColumn('situcao_cadastro_id', 'integer', [
-                'default' => null,
-                'limit' => 11,
-                'null' => false,
             ])
             ->addIndex(
                 [
-                    'situcao_cadastro_id',
+                    'doador_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'situacao_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'voluntario_id',
                 ]
             )
             ->create();
 
-        $this->table('comidas')
-            ->addForeignKey(
-                'doador_id',
-                'users',
-                'id',
+        $this->table('voluntario')
+            ->addColumn('nome', 'string', [
+                'default' => null,
+                'limit' => 255,
+                'null' => true,
+            ])
+            ->addColumn('cnpj', 'string', [
+                'default' => null,
+                'limit' => 50,
+                'null' => true,
+            ])
+            ->addColumn('telefone', 'string', [
+                'default' => null,
+                'limit' => 50,
+                'null' => true,
+            ])
+            ->addColumn('endereco', 'string', [
+                'default' => null,
+                'limit' => 50,
+                'null' => true,
+            ])
+            ->addColumn('numero', 'string', [
+                'default' => null,
+                'limit' => 50,
+                'null' => true,
+            ])
+            ->addColumn('created', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
+            ->addColumn('modified', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
+            ->addColumn('situacao_id', 'integer', [
+                'default' => null,
+                'limit' => 20,
+                'null' => true,
+            ])
+            ->addIndex(
                 [
-                    'update' => 'RESTRICT',
-                    'delete' => 'RESTRICT'
+                    'situacao_id',
                 ]
             )
-            ->addForeignKey(
-                'situacao_cadastro_id',
-                'situacao_cadastros',
-                'id',
-                [
-                    'update' => 'RESTRICT',
-                    'delete' => 'RESTRICT'
-                ]
-            )
-            ->addForeignKey(
-                'situacao_comida_id',
-                'situacao_comidas',
-                'id',
-                [
-                    'update' => 'RESTRICT',
-                    'delete' => 'RESTRICT'
-                ]
-            )
-            ->update();
+            ->create();
 
-        $this->table('reservas')
+        $this->table('doacao')
             ->addForeignKey(
-                'comida_id',
-                'comidas',
+                'doacao_status_id',
+                'doacao_status',
                 'id',
                 [
                     'update' => 'RESTRICT',
@@ -344,7 +294,7 @@ class Initial extends AbstractMigration
             )
             ->addForeignKey(
                 'doador_id',
-                'users',
+                'doador',
                 'id',
                 [
                     'update' => 'RESTRICT',
@@ -352,17 +302,8 @@ class Initial extends AbstractMigration
                 ]
             )
             ->addForeignKey(
-                'situacao_cadastro_id',
-                'situacao_cadastros',
-                'id',
-                [
-                    'update' => 'RESTRICT',
-                    'delete' => 'RESTRICT'
-                ]
-            )
-            ->addForeignKey(
-                'situacao_reserva_id',
-                'situcao_reservas',
+                'tipo_doacao_id',
+                'doacao_tipo',
                 'id',
                 [
                     'update' => 'RESTRICT',
@@ -371,7 +312,7 @@ class Initial extends AbstractMigration
             )
             ->addForeignKey(
                 'voluntario_id',
-                'users',
+                'voluntario',
                 'id',
                 [
                     'update' => 'RESTRICT',
@@ -380,34 +321,10 @@ class Initial extends AbstractMigration
             )
             ->update();
 
-        $this->table('situacao_cadastros')
+        $this->table('doador')
             ->addForeignKey(
-                'user_id',
-                'users',
-                'id',
-                [
-                    'update' => 'RESTRICT',
-                    'delete' => 'RESTRICT'
-                ]
-            )
-            ->update();
-
-        $this->table('situacao_comidas')
-            ->addForeignKey(
-                'user_id',
-                'users',
-                'id',
-                [
-                    'update' => 'RESTRICT',
-                    'delete' => 'RESTRICT'
-                ]
-            )
-            ->update();
-
-        $this->table('situcao_reservas')
-            ->addForeignKey(
-                'user_id',
-                'users',
+                'situacao_id',
+                'situacao_cadastro',
                 'id',
                 [
                     'update' => 'RESTRICT',
@@ -418,8 +335,38 @@ class Initial extends AbstractMigration
 
         $this->table('users')
             ->addForeignKey(
-                'situcao_cadastro_id',
-                'situacao_cadastros',
+                'doador_id',
+                'doador',
+                'id',
+                [
+                    'update' => 'RESTRICT',
+                    'delete' => 'RESTRICT'
+                ]
+            )
+            ->addForeignKey(
+                'situacao_id',
+                'situacao_cadastro',
+                'id',
+                [
+                    'update' => 'RESTRICT',
+                    'delete' => 'RESTRICT'
+                ]
+            )
+            ->addForeignKey(
+                'voluntario_id',
+                'voluntario',
+                'id',
+                [
+                    'update' => 'RESTRICT',
+                    'delete' => 'RESTRICT'
+                ]
+            )
+            ->update();
+
+        $this->table('voluntario')
+            ->addForeignKey(
+                'situacao_id',
+                'situacao_cadastro',
                 'id',
                 [
                     'update' => 'RESTRICT',
@@ -431,60 +378,47 @@ class Initial extends AbstractMigration
 
     public function down()
     {
-        $this->table('comidas')
+        $this->table('doacao')
             ->dropForeignKey(
-                'doador_id'
-            )
-            ->dropForeignKey(
-                'situacao_cadastro_id'
-            )
-            ->dropForeignKey(
-                'situacao_comida_id'
-            );
-
-        $this->table('reservas')
-            ->dropForeignKey(
-                'comida_id'
+                'doacao_status_id'
             )
             ->dropForeignKey(
                 'doador_id'
             )
             ->dropForeignKey(
-                'situacao_cadastro_id'
-            )
-            ->dropForeignKey(
-                'situacao_reserva_id'
+                'tipo_doacao_id'
             )
             ->dropForeignKey(
                 'voluntario_id'
             );
 
-        $this->table('situacao_cadastros')
+        $this->table('doador')
             ->dropForeignKey(
-                'user_id'
-            );
-
-        $this->table('situacao_comidas')
-            ->dropForeignKey(
-                'user_id'
-            );
-
-        $this->table('situcao_reservas')
-            ->dropForeignKey(
-                'user_id'
+                'situacao_id'
             );
 
         $this->table('users')
             ->dropForeignKey(
-                'situcao_cadastro_id'
+                'doador_id'
+            )
+            ->dropForeignKey(
+                'situacao_id'
+            )
+            ->dropForeignKey(
+                'voluntario_id'
             );
 
-        $this->dropTable('comidas');
-        $this->dropTable('reservas');
-        $this->dropTable('situacao_cadastros');
-        $this->dropTable('situacao_comidas');
-        $this->dropTable('situcao_cadastros');
-        $this->dropTable('situcao_reservas');
+        $this->table('voluntario')
+            ->dropForeignKey(
+                'situacao_id'
+            );
+
+        $this->dropTable('doacao');
+        $this->dropTable('doacao_status');
+        $this->dropTable('doacao_tipo');
+        $this->dropTable('doador');
+        $this->dropTable('situacao_cadastro');
         $this->dropTable('users');
+        $this->dropTable('voluntario');
     }
 }
