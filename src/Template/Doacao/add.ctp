@@ -36,6 +36,11 @@
                     </div>
                     <div class="col-lg-6">
                         <?php
+                        echo $this->Form->input('tipo_doacao_id', ['label' => 'Tipo de Doação', 'options' => $doacaoTipo, 'empty' => 'Selecione']);
+                        ?>
+                    </div>
+                    <div class="col-lg-6">
+                        <?php
                         echo $this->Form->input('quantidade');
                         ?>
                     </div>
@@ -46,12 +51,7 @@
                     </div>
                     <div class="col-lg-6">
                         <?php
-                        echo $this->Form->input('numero', ['label' => 'Número']);
-                        ?>
-                    </div>
-                    <div class="col-lg-6">
-                        <?php
-                        echo $this->Form->input('descricao', ['label' => 'Descrição', 'type' => 'textarea', 'placeholder' => 'Arroz, Feijão, Mandioca, Carne...']);
+                        echo $this->Form->input('descricao', ['label' => 'Descrição', 'type' => 'textarea', 'placeholder' => 'Arroz, Feijão, Mandioca, Carne...', 'maxlenght' => '100']);
                         ?>
                     </div>
                     <div class="clearfix"></div>

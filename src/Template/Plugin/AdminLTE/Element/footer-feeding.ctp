@@ -22,3 +22,5 @@ echo "<script>var site_path =\"".$root."\";</script>";
 <?= $this->Html->script('datetimepicker/bootstrap-datetimepicker'); ?>
 <?= $this->Html->script('toast/jquery.toast.min'); ?>
 <?= $this->Html->script('functions'); ?>
+<?= $this->Html->script('jquery.mask.min'); ?>
+

@@ -206,7 +206,10 @@
                     <a href="#" class="btn btn-default btn-flat">Profile</a>
                   </div>
                   <div class="pull-right">
-                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                      <?php
+                        echo $this->Html->link('Sair', ['class' => 'btn btn-default btn-flat', 'controller' => 'Users', 'action' => 'logout'])
+                      ?>
+<!--                    <a href="#" class="btn btn-default btn-flat">Sign out</a>-->
                   </div>
                 </li>
               </ul>

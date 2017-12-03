@@ -30,7 +30,7 @@ class UsersController extends AppController
                 $this->Auth->setUser($usuarios);
                 return $this->redirect($this->Auth->redirectUrl());
             }
-            $this->Flash->error('Seu login ou senha estão incorretos!');
+            $this->Flash->error('Seu usuário ou senha estão incorretos!');
         }
     }
 
@@ -83,13 +83,43 @@ class UsersController extends AppController
     {
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
-            $user->situacao_id = 1;
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('The {0} has been saved.', 'User'));
-                return $this->redirect(['action' => 'index']);
+            if ($this->request->getData('perfil_usuario') == 'doador') {
+                $this->loadModel('Doador');
+                $doador = $this->Doador->newEntity();
+                $doador->nome = $this->request->getData('doador_nome');
+                $doador->cpf = $this->request->getData('doador_cpf');
+                $doador->cnpj = $this->request->getData('doador_cnpj');
+                $doador->telefone = $this->request->getData('doador_telefone');
+                $doador->endereco = $this->request->getData('doador_endereco');
+                $doador->numero = $this->request->getData('doador_numero');
+                $doador->situacao_id = 1;
+                $this->Doador->save($doador);
+                $tipo_usuario = $doador->id;
+            } else if ($this->request->getData('perfil_usuario') == 'voluntario') {
+                $this->loadModel('Voluntario');
+                $voluntario = $this->Voluntario->newEntity();
+                $voluntario->nome = $this->request->getData('voluntario_nome');
+                $voluntario->cnpj = $this->request->getData('voluntario_cnpj');
+                $voluntario->telefone = $this->request->getData('voluntario_telefone');
+                $voluntario->endereco = $this->request->getData('voluntario_endereco');
+                $voluntario->numero = $this->request->getData('voluntario_numero');
+                $voluntario->situacao_id = 1;
+                $this->Voluntario->save($voluntario);
+                $tipo_usuario = $voluntario->id;
+            }
+
+            if (!empty($tipo_usuario)) {
+                $user = $this->Users->patchEntity($user, $this->request->getData());
+                $this->request->getData('perfil_usuario') == 'doador' ? $user->doador_id = $tipo_usuario: $user->voluntario_id = $tipo_usuario;
+                $user->situacao_id = 1;
+                if ($this->Users->save($user)) {
+                    $this->Flash->success(__('Usuário criado com sucesso!'));
+                    return $this->redirect(['action' => 'index']);
+                } else {
+                    $this->Flash->error(__('Não foi possível cadastrar seu usuário. Tente novamente!'));
+                }
             } else {
-                $this->Flash->error(__('The {0} could not be saved. Please, try again.', 'User'));
+                $this->Flash->error(__('Não foi possível cadastrar seu usuário. Tente novamente!'));
             }
         }
         $voluntario = $this->Users->Voluntario->find('list', ['limit' => 200]);

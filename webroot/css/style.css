@@ -35,6 +35,12 @@
     background-color: #d97d00;
     border: 1px solid #d97d00;
 }
+<<<<<<< HEAD
 .box-feeding button.btnReservar:hover {
     background-color: #e38700 !important;
+=======
+
+.form_usuario, .form_doador, .form_voluntario{
+    display: none;
+>>>>>>> 06db61ddc4d64c85c5e4f069f7e2e3744dbbcf5b
 }
