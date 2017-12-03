@@ -1,2 +1,17 @@
 @charset "UTF-8";
 
+.box-feeding {
+    background-color: #bc2026;
+    background-image: linear-gradient(to bottom, transparent, rgba(98, 12, 7, 0.6));
+    color: #fff;
+    border-top: none;
+    -webkit-box-shadow: 8px 8px 8px -5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 8px 8px 8px -5px rgba(0,0,0,0.75);
+    box-shadow: 8px 8px 8px -5px rgba(0,0,0,0.75);
+    text-align: justify;
+}
+.box-feeding button {
+    background-color: #d97d00;
+    border: 1px solid #d97d00;
+}
+
