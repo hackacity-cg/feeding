@@ -12,6 +12,7 @@ use App\Controller\AppController;
  */
 class DoacaoController extends AppController
 {
+    public $components = ['Data'];
 
     /**
      * Index method
@@ -55,12 +56,16 @@ class DoacaoController extends AppController
     {
         $doacao = $this->Doacao->newEntity();
         if ($this->request->is('post')) {
-            $doacao = $this->Doacao->patchEntity($doacao, $this->request->data);
+            $doacao = $this->Doacao->patchEntity($doacao, $this->request->getData());
+            $doacao->data_inicio = $this->Data->DateTimeSql($this->request->getData('data_inicio'));
+            $doacao->data_fim = $this->Data->DateTimeSql($this->request->getData('data_fim'));
+            $doacao->doacao_status_id = 1;
+            $doacao->doador_id = $this->Auth->user('id');
             if ($this->Doacao->save($doacao)) {
-                $this->Flash->success(__('The {0} has been saved.', 'Doacao'));
+                $this->Flash->success(__('Doação cadastrada com sucesso!'));
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The {0} could not be saved. Please, try again.', 'Doacao'));
+                $this->Flash->error(__('Sua doação não foi cadastrada, tente novamente!'));
             }
         }
         $doador = $this->Doacao->Doador->find('list', ['limit' => 200]);

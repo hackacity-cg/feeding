@@ -33,7 +33,7 @@ class DoacaoTipoTable extends Table
         parent::initialize($config);
 
         $this->setTable('doacao_tipo');
-        $this->setDisplayField('id');
+        $this->setDisplayField('nome');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');

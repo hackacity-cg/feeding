@@ -36,6 +36,11 @@
                     </div>
                     <div class="col-lg-6">
                         <?php
+                        echo $this->Form->input('tipo_doacao_id', ['label' => 'Tipo de Doação', 'options' => $doacaoTipo, 'empty' => 'Selecione']);
+                        ?>
+                    </div>
+                    <div class="col-lg-6">
+                        <?php
                         echo $this->Form->input('quantidade');
                         ?>
                     </div>
